@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Basadi in Business Client Intake | Ntuthuko Biz Connect</title>
+  <meta name="robots" content="noindex,follow">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="forms" data-service="basadi-in-business">
+  <div id="site-header"></div>
+  <main>
+    <section class="intake-hero"><div class="container"><a class="back-link" href="forms.html">&larr; All client forms</a><span class="page-kicker" data-service-category></span><h1><span data-service-name></span> client intake</h1><p class="lead">Complete the form as accurately as possible. Our team will review your information before beginning any work or requesting further documents.</p></div></section>
+    <section class="section intake-page"><div class="container intake-shell" data-intake-shell>
+      <form class="client-intake-form" data-service-intake enctype="multipart/form-data">
+        <input type="hidden" name="service_slug"><input type="hidden" name="service_name"><input type="hidden" name="service_category">
+        <fieldset><legend>1. Your details</legend><div class="form-grid"><div><label for="full-name">Full name *</label><input id="full-name" name="full_name" autocomplete="name" required></div><div><label for="email">Email address *</label><input id="email" name="email" type="email" autocomplete="email" required></div><div><label for="phone">Mobile / WhatsApp number *</label><input id="phone" name="phone" type="tel" autocomplete="tel" required></div><div><label for="contact-method">Preferred contact method *</label><select id="contact-method" name="preferred_contact" required><option value="">Select one</option><option>WhatsApp</option><option>Phone call</option><option>Email</option></select></div></div></fieldset>
+        <fieldset><legend>2. Business details</legend><div class="form-grid"><div><label for="business">Business or organisation name *</label><input id="business" name="business_name" required></div><div><label for="registration">Registration number, if available</label><input id="registration" name="registration_number"></div><div><label for="industry">Industry *</label><input id="industry" name="industry" required></div><div><label for="province">Province *</label><select id="province" name="province" required><option value="">Select province</option><option>Eastern Cape</option><option>Free State</option><option>Gauteng</option><option>KwaZulu-Natal</option><option>Limpopo</option><option>Mpumalanga</option><option>North West</option><option>Northern Cape</option><option>Western Cape</option></select></div><div class="full"><label for="description">What does the business do? *</label><textarea id="description" name="business_description" required></textarea></div></div></fieldset>
+        <fieldset><legend>3. Support needed</legend><div class="form-grid"><div><label for="stage">Current business stage *</label><select id="stage" name="business_stage" required><option value="">Select stage</option><option>Idea stage</option><option>Informal / trading</option><option>Registered startup</option><option>Established business</option><option>NPO / community organisation</option></select></div><div><label for="urgency">When do you need assistance? *</label><select id="urgency" name="urgency" required><option value="">Select timeframe</option><option>As soon as possible</option><option>Within 2 weeks</option><option>Within 30 days</option><option>Planning ahead</option></select></div><div class="full"><label for="challenge">Describe the challenge, desired outcome and any deadlines *</label><textarea id="challenge" name="support_request" required></textarea></div></div></fieldset>
+        <fieldset><legend>4. Supporting documents</legend><p class="section-copy">Helpful for this service: <strong data-doc-guidance></strong>.</p><label for="documents">Upload relevant documents</label><input id="documents" name="documents" type="file" multiple accept=".pdf,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png"><span class="hint">Maximum 10 files. Do not upload passwords, bank login credentials or unrelated personal records.</span></fieldset>
+        <fieldset><legend>5. Consent and privacy</legend><label class="consent-choice"><input type="checkbox" name="consent" value="yes" required><span>I confirm that the information is accurate and authorise Ntuthuko Biz Connect to use it to assess and deliver the requested service. I understand that submission does not guarantee acceptance, pricing or completion until the scope is confirmed. *</span></label><label class="consent-choice"><input type="checkbox" name="communication_consent" value="yes"><span>I agree to receive service-related updates through my preferred contact method.</span></label></fieldset>
+        <div class="form-status" data-form-status role="status" aria-live="polite"></div>
+        <div class="form-actions"><p>Questions? Email <a href="mailto:support@ntuthukobiz.co.za">support@ntuthukobiz.co.za</a>.</p><button class="btn" type="submit">Submit securely</button></div>
+      </form>
+    </div></section>
+  </main>
+  <div id="site-footer"></div>
+  <script src="app.js"></script><script src="intake-catalog.js"></script><script src="intake.js"></script>
+</body>
+</html>
