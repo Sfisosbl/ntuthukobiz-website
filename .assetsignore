@@ -1,1 +1,9 @@
 _worker.js
+wrangler.toml
+WORKER-DEPLOYMENT.md
+CLOUDFLARE-FORMS-SETUP.md
+cloudflare-intake-schema.sql
+IMAGE-CREDITS.md
+.wrangler/
+.xdg/
+public/

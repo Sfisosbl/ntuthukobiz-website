@@ -3,9 +3,9 @@
 This folder is no longer for Cloudflare Pages Direct Upload. It must be
 deployed with Wrangler as a Cloudflare Worker so runtime bindings are accepted.
 
-The existing website pages have been copied into `public/` and are served as
-static assets. `_worker.js` handles only `/api/intake` and then falls back to
-the static site through `env.ASSETS.fetch(request)`.
+The existing website pages are in the project root and are served as static
+assets. `_worker.js` handles only `/api/intake` and then falls back to the
+static site through `env.ASSETS.fetch(request)`.
 
 ## 1. Get the existing D1 database ID
 
@@ -59,7 +59,7 @@ npx wrangler deploy
 If `npx` asks to install Wrangler, type `y`.
 
 Wrangler reads `wrangler.toml`, deploys `_worker.js` as the Worker, and uploads
-the static website from `public/`.
+the static website from the project root.
 
 ## 5. Cloudflare dashboard settings
 
