@@ -59,7 +59,9 @@ npx wrangler deploy
 If `npx` asks to install Wrangler, type `y`.
 
 Wrangler reads `wrangler.toml`, deploys `_worker.js` as the Worker, and uploads
-the static website from the project root.
+the static website from the project root. `.assetsignore` prevents Git internals,
+the Worker source file, setup notes, and other non-website files from being
+published as static assets.
 
 ## 5. Cloudflare dashboard settings
 
