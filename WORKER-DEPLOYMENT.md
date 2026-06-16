@@ -3,7 +3,7 @@
 This folder is no longer for Cloudflare Pages Direct Upload. It must be
 deployed with Wrangler as a Cloudflare Worker so runtime bindings are accepted.
 
-The existing website pages are in the project root and are served as static
+The existing website pages are copied into `site/` and are served as static
 assets. `_worker.js` handles only `/api/intake` and then falls back to the
 static site through `env.ASSETS.fetch(request)`.
 
@@ -59,9 +59,27 @@ npx wrangler deploy
 If `npx` asks to install Wrangler, type `y`.
 
 Wrangler reads `wrangler.toml`, deploys `_worker.js` as the Worker, and uploads
-the static website from the project root. `.assetsignore` prevents Git internals,
-the Worker source file, setup notes, and other non-website files from being
-published as static assets.
+the static website from `site/`. This keeps Git internals, the Worker source
+file, setup notes, and other non-website files out of the static asset upload.
+
+If deploying through GitHub, these files must exist in the repository root:
+
+- `wrangler.toml`
+- `.assetsignore`
+- `_worker.js`
+- `site/`
+
+The Cloudflare build command should be:
+
+```text
+npx wrangler deploy
+```
+
+The Cloudflare root directory should be:
+
+```text
+/
+```
 
 ## 5. Cloudflare dashboard settings
 
