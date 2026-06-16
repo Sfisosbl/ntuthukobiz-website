@@ -1,0 +1,17 @@
+name = "ntuthukobiz-website"
+main = "_worker.js"
+compatibility_date = "2026-06-16"
+
+[assets]
+directory = "./public"
+binding = "ASSETS"
+run_worker_first = ["/api/*"]
+
+[[d1_databases]]
+binding = "INTAKE_DB"
+database_name = "ntuthukobiz_forms"
+database_id = "PASTE_NTUTHUKOBIZ_FORMS_DATABASE_ID_HERE"
+
+[[r2_buckets]]
+binding = "INTAKE_FILES"
+bucket_name = "ntuthukobiz-intake-files"

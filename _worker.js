@@ -18,9 +18,9 @@ function clean(value, max = 5000) {
 }
 
 async function handleIntake(request, env) {
-  if (!env.INTAKE_DB || !env.INTAKE_FILES || !env.RESEND_API_KEY || !env.NOTIFICATION_FROM_EMAIL) {
+  if (!env.INTAKE_DB || !env.INTAKE_FILES) {
     return json({
-      message: "Secure submissions are not active yet. The Cloudflare storage and notification bindings still need to be configured.",
+      message: "Secure submissions are not active yet. The Cloudflare D1 and R2 bindings still need to be configured.",
       code: "INTAKE_BACKEND_NOT_CONFIGURED",
     }, 503);
   }
@@ -87,38 +87,46 @@ async function handleIntake(request, env) {
     return json({ message: "The secure storage service is not ready. Please contact support@ntuthukobiz.co.za." }, 503);
   }
 
-  const emailResponse = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      authorization: `Bearer ${env.RESEND_API_KEY}`,
-      "content-type": "application/json",
-    },
-    body: JSON.stringify({
-      from: env.NOTIFICATION_FROM_EMAIL,
-      to: ["support@ntuthukobiz.co.za"],
-      reply_to: fields.email,
-      subject: `${reference}: ${fields.service_name} intake`,
-      text: [
-        `New Ntuthuko Biz Connect client intake`,
-        `Reference: ${reference}`,
-        `Service: ${fields.service_name}`,
-        `Client: ${fields.full_name}`,
-        `Business: ${fields.business_name}`,
-        `Email: ${fields.email}`,
-        `Phone: ${fields.phone}`,
-        `Files: ${files.length}`,
-        ``,
-        `Review the full record in the configured D1 database and R2 bucket.`,
-      ].join("\n"),
-    }),
-  });
+  if (env.RESEND_API_KEY && env.NOTIFICATION_FROM_EMAIL) {
+    try {
+      const emailResponse = await fetch("https://api.resend.com/emails", {
+        method: "POST",
+        headers: {
+          authorization: `Bearer ${env.RESEND_API_KEY}`,
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({
+          from: env.NOTIFICATION_FROM_EMAIL,
+          to: ["support@ntuthukobiz.co.za"],
+          reply_to: fields.email,
+          subject: `${reference}: ${fields.service_name} intake`,
+          text: [
+            `New Ntuthuko Biz Connect client intake`,
+            `Reference: ${reference}`,
+            `Service: ${fields.service_name}`,
+            `Client: ${fields.full_name}`,
+            `Business: ${fields.business_name}`,
+            `Email: ${fields.email}`,
+            `Phone: ${fields.phone}`,
+            `Files: ${files.length}`,
+            ``,
+            `Review the full record in the configured D1 database and R2 bucket.`,
+          ].join("\n"),
+        }),
+      });
 
-  if (!emailResponse.ok) {
-    console.error("Submission saved but email notification failed", await emailResponse.text());
-    return json({ reference, saved: true, notification: false });
+      if (!emailResponse.ok) {
+        console.error("Submission saved but email notification failed", await emailResponse.text());
+        return json({ reference, saved: true, notification: false }, 201);
+      }
+
+      return json({ reference, saved: true, notification: true }, 201);
+    } catch (error) {
+      console.error("Submission saved but email notification failed", error);
+    }
   }
 
-  return json({ reference, saved: true, notification: true }, 201);
+  return json({ reference, saved: true, notification: false }, 201);
 }
 
 export default {
