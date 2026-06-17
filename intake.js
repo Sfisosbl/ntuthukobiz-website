@@ -75,7 +75,7 @@ function renderServiceIntake() {
     try {
       const response = await fetch("/api/intake", { method: "POST", body: new FormData(form) });
       const result = await response.json().catch(() => ({}));
-      if (!response.ok) throw new Error(result.message || "The form service is not available yet.");
+      if (!response.ok) throw new Error(result.message || "We could not save your form right now. Please try again, or contact support@ntuthukobiz.co.za.");
       form.reset();
       status.className = "form-status success";
       status.textContent = `Thank you. Your reference is ${result.reference}. Ntuthuko Biz Connect will review your information and contact you.`;
