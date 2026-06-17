@@ -11,7 +11,7 @@ not_found_handling = "single-page-application"
 [[d1_databases]]
 binding = "INTAKE_DB"
 database_name = "ntuthukobiz_forms"
-database_id = "PASTE_NTUTHUKOBIZ_FORMS_DATABASE_ID_HERE"
+database_id = "ac2783ee-2aee-40f1-984d-8bfb56b13c64"
 
 [[r2_buckets]]
 binding = "INTAKE_FILES"
