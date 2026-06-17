@@ -9,7 +9,7 @@ Current required bindings:
 
 - D1 binding: `INTAKE_DB` connected to `ntuthukobiz_forms`
 - R2 binding: `INTAKE_FILES` connected to `ntuthukobiz-intake-files`
-- Static assets binding: `ASSETS` connected to `public/`
+- Static assets binding: `ASSETS` connected to `site/`
 
 Email notifications are disabled for now. The Worker will still save form
 submissions to D1 and uploaded documents to R2 when email secrets are not
